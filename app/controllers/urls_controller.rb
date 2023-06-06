@@ -1,5 +1,4 @@
 class UrlsController < ApplicationController
-
   skip_before_action :verify_authenticity_token, only: [:new, :create, :show]
 
   def new
@@ -7,16 +6,22 @@ class UrlsController < ApplicationController
   end
 
   def create
-    x = url_params
+    @url = Url.find_or_initialize_by(url_params)
 
-    puts x
+    unless @url.new_record?
+      render json: { message: "short url for this corresponding long url already exists", url: @url }, status: :ok
+      return
+    end
 
-    @url = Url.new(url_params)
-    @url.save
-    #   redirect_to url_path(@url.short_url)
-    # else
-    #   render :new
-    # end
+    short_url = @url.generate_short_url(6)
+
+    @url.assign_attributes(short_url: short_url)
+
+    if @url.save
+      render json: { message: "URL created successfully", url: @url }, status: :created
+    else
+      render json: { error: "Failed to create URL" }, status: :internal_server_error
+    end
   end
 
   def show
