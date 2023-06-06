@@ -5,12 +5,21 @@
 # gem 'activerecord-jdbcsqlite3-adapter'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: spark4
+  password: e94e39d9
+  host: login-spark4.dev.cogoport.io
+  port: 6432
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: cogoport_api_spark4
+  username: spark4
+  password: e94e39d9
+  host: login-spark4.dev.cogoport.io
+  port: 6432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

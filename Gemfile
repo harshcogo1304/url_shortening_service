@@ -7,6 +7,9 @@ ruby '2.6.8'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use jdbcsqlite3 as the database for Active Record
 gem 'activerecord-jdbcsqlite3-adapter'
+
+gem 'activerecord-postgis-adapter'
+gem 'activerecord-jdbcpostgresql-adapter'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

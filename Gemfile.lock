@@ -47,9 +47,15 @@ GEM
       activesupport (= 6.0.6.1)
     activerecord-jdbc-adapter (60.4-java)
       activerecord (~> 6.0.0)
+    activerecord-jdbcpostgresql-adapter (60.4-java)
+      activerecord-jdbc-adapter (= 60.4)
+      jdbc-postgres (>= 9.4, < 43)
     activerecord-jdbcsqlite3-adapter (60.4-java)
       activerecord-jdbc-adapter (= 60.4)
       jdbc-sqlite3 (~> 3.8, < 3.30)
+    activerecord-postgis-adapter (6.0.3)
+      activerecord (~> 6.0.0)
+      rgeo-activerecord (~> 6.0)
     activestorage (6.0.6.1)
       actionpack (= 6.0.6.1)
       activejob (= 6.0.6.1)
@@ -87,6 +93,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jdbc-postgres (42.2.25)
     jdbc-sqlite3 (3.28.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -158,6 +165,10 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.8.0)
     rexml (3.2.5)
+    rgeo (3.0.0)
+    rgeo-activerecord (6.2.2)
+      activerecord (>= 5.0)
+      rgeo (>= 1.0.0)
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
@@ -216,7 +227,9 @@ PLATFORMS
   universal-java-16
 
 DEPENDENCIES
+  activerecord-jdbcpostgresql-adapter
   activerecord-jdbcsqlite3-adapter
+  activerecord-postgis-adapter
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
