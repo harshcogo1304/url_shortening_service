@@ -24,9 +24,24 @@ class UrlsController < ApplicationController
     end
   end
 
+  def redirect_to_long_url
+    @url = Url.where(short_url: params[:short_url]).take
+
+    if @url
+      render json: { long_url: @url.long_url }
+    else
+      render json: { error: 'Short URL not found' }, status: :not_found
+    end
+  end
+
   def show
-    @url = Url.find_by(short_url: params[:id])
-    redirect_to @url.long_url
+    @url = Url.where(short_url: params[:id]).take
+
+    if @url
+      render json: { long_url: @url.long_url }
+    else
+      render json: { error: 'Short URL not found' }, status: :not_found
+    end
   end
 
   private
